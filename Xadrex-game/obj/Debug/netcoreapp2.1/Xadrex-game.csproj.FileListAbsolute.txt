@@ -1,0 +1,11 @@
+F:\Users\wellv\Documents\Programação Orientada a Objeto C#\Xadrex-game\Xadrex-game\bin\Debug\netcoreapp2.1\Xadrex-game.deps.json
+F:\Users\wellv\Documents\Programação Orientada a Objeto C#\Xadrex-game\Xadrex-game\bin\Debug\netcoreapp2.1\Xadrex-game.runtimeconfig.json
+F:\Users\wellv\Documents\Programação Orientada a Objeto C#\Xadrex-game\Xadrex-game\bin\Debug\netcoreapp2.1\Xadrex-game.runtimeconfig.dev.json
+F:\Users\wellv\Documents\Programação Orientada a Objeto C#\Xadrex-game\Xadrex-game\bin\Debug\netcoreapp2.1\Xadrex-game.dll
+F:\Users\wellv\Documents\Programação Orientada a Objeto C#\Xadrex-game\Xadrex-game\bin\Debug\netcoreapp2.1\Xadrex-game.pdb
+F:\Users\wellv\Documents\Programação Orientada a Objeto C#\Xadrex-game\Xadrex-game\obj\Debug\netcoreapp2.1\Xadrex-game.csprojAssemblyReference.cache
+F:\Users\wellv\Documents\Programação Orientada a Objeto C#\Xadrex-game\Xadrex-game\obj\Debug\netcoreapp2.1\Xadrex-game.csproj.CoreCompileInputs.cache
+F:\Users\wellv\Documents\Programação Orientada a Objeto C#\Xadrex-game\Xadrex-game\obj\Debug\netcoreapp2.1\Xadrex-game.AssemblyInfoInputs.cache
+F:\Users\wellv\Documents\Programação Orientada a Objeto C#\Xadrex-game\Xadrex-game\obj\Debug\netcoreapp2.1\Xadrex-game.AssemblyInfo.cs
+F:\Users\wellv\Documents\Programação Orientada a Objeto C#\Xadrex-game\Xadrex-game\obj\Debug\netcoreapp2.1\Xadrex-game.dll
+F:\Users\wellv\Documents\Programação Orientada a Objeto C#\Xadrex-game\Xadrex-game\obj\Debug\netcoreapp2.1\Xadrex-game.pdb

@@ -1,4 +1,5 @@
 ﻿using System;
+using tabuleiro;
 
 namespace Xadrex_game
 {
@@ -6,7 +7,7 @@ namespace Xadrex_game
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Tabuleiro tab = new Tabuleiro(8,8);
         }
     }
 }
