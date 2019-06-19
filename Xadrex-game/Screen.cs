@@ -17,7 +17,7 @@ namespace Xadrex_game
                     }
                     else
                     {
-                        Console.WriteLine(tab.Piece(i, j) + " ");
+                        Console.Write(tab.Piece(i, j) + " ");
                     }
                 }
                 Console.WriteLine();

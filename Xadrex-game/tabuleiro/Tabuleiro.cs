@@ -7,17 +7,22 @@ namespace tabuleiro
     {
         public int Lines { get; set; }
         public int Colums { get; set; }
-        private Piece[,] pieces;
+        private Piece[,] Pieces;
 
         public Tabuleiro(int lines, int colums)
         {
             Lines = lines;
             Colums = colums;
-            pieces = new Piece[Lines, Colums];
+            Pieces = new Piece[Lines, Colums];
         }
-        public Piece Piece(int linha,int coluna)
+        public Piece Piece(int lines,int colums)
         {
-            return pieces[linha, coluna];
+            return Pieces[lines, colums];
+        }
+        public void InsertPiece(Piece p,Position pos)
+        {
+            Pieces[pos.Line, pos.Column] = p;
+            p.Position = pos;
         }
     }
 }

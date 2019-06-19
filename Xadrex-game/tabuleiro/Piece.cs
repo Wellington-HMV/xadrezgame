@@ -11,11 +11,11 @@ namespace tabuleiro
         public int QntMoves { get;protected set; }
         public Tabuleiro Tab { get; set; }
 
-        public Piece(Position position, Color color, Tabuleiro tab)
+        public Piece(Tabuleiro tab, Color color)
         {
-            Position = position;
-            Color = color;
+            Position = null;
             Tab = tab;
+            Color = color;
             QntMoves = 0;
         }
     }
