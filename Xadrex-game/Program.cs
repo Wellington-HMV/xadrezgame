@@ -8,9 +8,19 @@ namespace Xadrex_game
     {
         static void Main(string[] args)
         {
-            PositionXadrez position = new PositionXadrez('c', 7);
-            Console.WriteLine(position);
-            Console.WriteLine(position.ToPosition());
+            try
+            {
+                Tabuleiro tab = new Tabuleiro(8, 8);
+
+                tab.InsertPiece(new Tower(tab, Color.Black), new Position(0, 0));
+                tab.InsertPiece(new Tower(tab, Color.White), new Position(1, 3));
+                tab.InsertPiece(new King(tab, Color.Black), new Position(2, 4));
+
+                Screen.PrintTabuleiro(tab);
+            }
+            catch (TabuleiroException e){
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }
