@@ -15,5 +15,9 @@ namespace tabuleiro
             Colums = colums;
             pieces = new Piece[Lines, Colums];
         }
+        public Piece Piece(int linha,int coluna)
+        {
+            return pieces[linha, coluna];
+        }
     }
 }
