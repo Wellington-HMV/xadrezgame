@@ -15,14 +15,43 @@ namespace tabuleiro
             Colums = colums;
             Pieces = new Piece[Lines, Colums];
         }
-        public Piece Piece(int lines,int colums)
+        public Piece piece(Position pos)
+        {
+            return Pieces[pos.Column, pos.Line];
+        }
+        public Piece Piece(int lines, int colums)
         {
             return Pieces[lines, colums];
         }
-        public void InsertPiece(Piece p,Position pos)
+        public bool PieceExist(Position pos)
         {
+            ValidPositionException(pos);
+            return piece(pos) != null;
+        }
+        public void InsertPiece(Piece p, Position pos)
+        {
+            if (PieceExist(pos))
+            {
+                throw new TabuleiroException("There is already a piece in this position");
+            }
             Pieces[pos.Line, pos.Column] = p;
             p.Position = pos;
+        }
+
+        public bool ValidPosition(Position pos)
+        {
+            if (pos.Line < 0 || pos.Line >= Lines || pos.Column < 0 || pos.Column >= Colums)
+            {
+                return false;
+            }
+            return true;
+        }
+        public void ValidPositionException(Position pos)
+        {
+            if (!ValidPosition(pos))
+            {
+                throw new TabuleiroException("Invalid Position!");
+            }
         }
     }
 }

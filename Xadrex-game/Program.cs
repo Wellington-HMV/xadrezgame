@@ -8,13 +8,19 @@ namespace Xadrex_game
     {
         static void Main(string[] args)
         {
-            Tabuleiro tab = new Tabuleiro(8, 8);
+            try
+            {
+                Tabuleiro tab = new Tabuleiro(8, 8);
 
-            tab.InsertPiece(new Tower(tab, Color.Black), new Position(0, 0));
-            tab.InsertPiece(new Tower(tab, Color.Black), new Position(1, 3));
-            tab.InsertPiece(new King(tab, Color.Black), new Position(2, 4));
+                tab.InsertPiece(new Tower(tab, Color.Black), new Position(0, 0));
+                tab.InsertPiece(new Tower(tab, Color.Black), new Position(1, 3));
+                tab.InsertPiece(new King(tab, Color.Black), new Position(2, 9));
 
-            Screen.PrintTabuleiro(tab);
+                Screen.PrintTabuleiro(tab);
+            }
+            catch (TabuleiroException e){
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }
