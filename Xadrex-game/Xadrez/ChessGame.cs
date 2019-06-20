@@ -8,8 +8,8 @@ namespace Xadrez
     {
         public Tabuleiro tab { get; private set; }
         public bool Finish { get; private set; }
-        private int Turn;
-        private Color PlayerActual;
+        public int Turn { get; private set; }
+        public Color PlayerActual { get; private set; }
         public ChessGame()
         {
             tab = new Tabuleiro(8, 8);
@@ -24,6 +24,45 @@ namespace Xadrez
             p.IncrementQntMoves();
             Piece capturedPiece = tab.RemovePiece(destin);
             tab.InsertPiece(p, destin);
+        }
+        public void RealizePlayed(Position origin, Position destin)
+        {
+            ExecuteMov(origin, destin);
+            Turn++;
+            ChangePlayer();
+        }
+        public void ValidOriginPosition(Position pos)
+        {
+            if (tab.piece(pos) == null)
+            {
+                throw new TabuleiroException("Not exist origin piece in position selected!");
+            }
+            if (PlayerActual != tab.piece(pos).Color)
+            {
+                throw new TabuleiroException("This piece selected is not yours!");
+            }
+            if (!tab.piece(pos).PossiblesMovesExist())
+            {
+                throw new TabuleiroException("Not have possibles moves for piece selected!");
+            }
+        }
+        public void ValidDestinPosition(Position origin,Position destin)
+        {
+            if (!tab.piece(origin).CanMoveFor(destin))
+            {
+                throw new TabuleiroException("Destin position invalid!");
+            }
+        }
+        private void ChangePlayer()
+        {
+            if(PlayerActual == Color.White)
+            {
+                PlayerActual = Color.Black;
+            }
+            else
+            {
+                PlayerActual = Color.White;
+            }
         }
         private void InsertPieces()
         {

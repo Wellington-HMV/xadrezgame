@@ -22,6 +22,25 @@ namespace tabuleiro
         {
             QntMoves++;
         }
+        public bool PossiblesMovesExist()
+        {
+            bool[,] mat = MovesPossible();
+            for(int i =0; i < Tab.Lines; i++)
+            {
+                for (int j = 0; j < Tab.Colums; j++)
+                {
+                if (mat[i, j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        public bool CanMoveFor(Position pos)
+        {
+            return MovesPossible()[pos.Line, pos.Column];
+        }
         public abstract bool[,] MovesPossible();
     }
 }
