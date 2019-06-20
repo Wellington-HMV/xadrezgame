@@ -18,5 +18,9 @@ namespace tabuleiro
             Color = color;
             QntMoves = 0;
         }
+        public void IncrementQntMoves()
+        {
+            QntMoves ++;
+        }
     }
 }

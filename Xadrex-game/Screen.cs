@@ -1,5 +1,6 @@
 ﻿using System;
 using tabuleiro;
+using Xadrez;
 
 namespace Xadrex_game
 {
@@ -24,7 +25,14 @@ namespace Xadrex_game
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("  a b c d e f g h");
+            Console.WriteLine("\n  a b c d e f g h");
+        }
+        public static PositionXadrez WritePositionXadrez()
+        {
+            string s = Console.ReadLine();
+            char column = s[0];
+            int line = int.Parse(s[1] + "");
+            return new PositionXadrez(column, line);
         }
         public static void PrintPiece(Piece piece)
         {

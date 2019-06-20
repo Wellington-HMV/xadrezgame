@@ -10,15 +10,25 @@ namespace Xadrex_game
         {
             try
             {
-                Tabuleiro tab = new Tabuleiro(8, 8);
+                ChessGame play = new ChessGame();
 
-                tab.InsertPiece(new Tower(tab, Color.Black), new Position(0, 0));
-                tab.InsertPiece(new Tower(tab, Color.White), new Position(1, 3));
-                tab.InsertPiece(new King(tab, Color.Black), new Position(2, 4));
+                while (!play.Finish)
+                {
+                    Console.Clear();
+                    Screen.PrintTabuleiro(play.tab);
 
-                Screen.PrintTabuleiro(tab);
+                    Console.WriteLine();
+                    Console.Write("Origem: ");
+                    Position origin = Screen.WritePositionXadrez().ToPosition();
+                    Console.Write("Origem: ");
+                    Position destin = Screen.WritePositionXadrez().ToPosition();
+
+                    play.ExecuteMov(origin, destin);
+                }
+
             }
-            catch (TabuleiroException e){
+            catch (TabuleiroException e)
+            {
                 Console.WriteLine(e.Message);
             }
         }
