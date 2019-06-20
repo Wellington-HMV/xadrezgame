@@ -28,13 +28,14 @@ namespace Xadrez
         private void InsertPieces()
         {
             tab.InsertPiece(new Tower(tab, Color.White), new PositionXadrez('a', 8).ToPosition());
-            tab.InsertPiece(new Horse(tab, Color.Black), new PositionXadrez('b', 8).ToPosition());
-            /*   tab.InsertPiece(new Bishop(tab, Color.White), new PositionXadrez('c', 8).ToPosition());
-               tab.InsertPiece(new Lady(tab, Color.Black), new PositionXadrez('d', 8).ToPosition());
                tab.InsertPiece(new King(tab, Color.White), new PositionXadrez('e', 8).ToPosition());
+               tab.InsertPiece(new Tower(tab, Color.Black), new PositionXadrez('h', 8).ToPosition());
+               tab.InsertPiece(new King(tab, Color.Black), new PositionXadrez('e', 1).ToPosition());
+            /*   tab.InsertPiece(new Bishop(tab, Color.White), new PositionXadrez('c', 8).ToPosition());
+            tab.InsertPiece(new Horse(tab, Color.Black), new PositionXadrez('b', 8).ToPosition());
+               tab.InsertPiece(new Lady(tab, Color.Black), new PositionXadrez('d', 8).ToPosition());
                tab.InsertPiece(new Bishop(tab, Color.Black), new PositionXadrez('f', 8).ToPosition());
                tab.InsertPiece(new Horse(tab, Color.White), new PositionXadrez('g', 8).ToPosition());
-               tab.InsertPiece(new Tower(tab, Color.Black), new PositionXadrez('h', 8).ToPosition());
 
                tab.InsertPiece(new Pawn(tab, Color.White), new PositionXadrez('a', 7).ToPosition());
                tab.InsertPiece(new Pawn(tab, Color.White), new PositionXadrez('b', 7).ToPosition());
@@ -49,7 +50,6 @@ namespace Xadrez
                tab.InsertPiece(new Horse(tab, Color.White), new PositionXadrez('b', 1).ToPosition());
                tab.InsertPiece(new Bishop(tab, Color.Black), new PositionXadrez('c', 1).ToPosition());
                tab.InsertPiece(new Lady(tab, Color.White), new PositionXadrez('d', 1).ToPosition());
-               tab.InsertPiece(new King(tab, Color.Black), new PositionXadrez('e', 1).ToPosition());
                tab.InsertPiece(new Bishop(tab, Color.White), new PositionXadrez('f', 1).ToPosition());
                tab.InsertPiece(new Horse(tab, Color.Black), new PositionXadrez('g', 1).ToPosition());
                tab.InsertPiece(new Tower(tab, Color.White), new PositionXadrez('h', 1).ToPosition());

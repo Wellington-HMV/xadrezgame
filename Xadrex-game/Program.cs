@@ -20,7 +20,14 @@ namespace Xadrex_game
                     Console.WriteLine();
                     Console.Write("Origem: ");
                     Position origin = Screen.WritePositionXadrez().ToPosition();
-                    Console.Write("Origem: ");
+
+                    bool[,] possiblePositions = play.tab.piece(origin).MovesPossible();
+
+                    Console.Clear();
+                    Screen.PrintTabuleiro(play.tab,possiblePositions);
+
+                    Console.WriteLine();
+                    Console.Write("Destin: ");
                     Position destin = Screen.WritePositionXadrez().ToPosition();
 
                     play.ExecuteMov(origin, destin);

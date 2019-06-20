@@ -11,6 +11,14 @@ namespace Xadrez
             return "H";
 
         }
+        public override bool[,] MovesPossible()
+        {
+            bool[,] mat = new bool[Tab.Lines, Tab.Colums];
+            Position pos = new Position(0, 0);
+            //up
+
+            return mat;
+        }
     }
 }
 
