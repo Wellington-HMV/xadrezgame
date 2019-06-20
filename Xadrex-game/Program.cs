@@ -17,10 +17,7 @@ namespace Xadrex_game
                     try
                     {
                         Console.Clear();
-                        Screen.PrintTabuleiro(play.tab);
-                        Console.WriteLine();
-                        Console.WriteLine("Turn: " + play.Turn);
-                        Console.WriteLine("Waiting played : " + play.PlayerActual);
+                        Screen.PrintPlay(play);
 
 
                         Console.WriteLine();

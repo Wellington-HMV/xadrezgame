@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using tabuleiro;
 using Xadrez;
 
@@ -6,6 +7,37 @@ namespace Xadrex_game
 {
     class Screen
     {
+        public static void PrintPlay(ChessGame play)
+        {
+            PrintTabuleiro(play.tab);
+            Console.WriteLine();
+            PrintCapturedPieces(play);
+            Console.WriteLine("Turn: " + play.Turn);
+            Console.WriteLine("Waiting played : " + play.PlayerActual);
+        }
+
+        public static void PrintCapturedPieces( ChessGame play)
+        {
+            Console.WriteLine("Captured pieces: ");
+            Console.Write("Whites: ");
+            PrintConjunt(play.CapturedsPieces(Color.White));
+            Console.WriteLine();
+            Console.Write("Blacks: ");
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Blue;
+            PrintConjunt(play.CapturedsPieces(Color.Black));
+            Console.ForegroundColor = aux;
+            Console.WriteLine("\n");
+        }
+        public static void PrintConjunt(HashSet<Piece> conjunt)
+        {
+            Console.Write("[");
+            foreach(Piece x in conjunt)
+            {
+                Console.Write(x + " ");
+            }
+            Console.Write("]");
+        }
         public static void PrintTabuleiro(Tabuleiro tab)
         {
             for (int i = 0; i < tab.Lines; i++)
