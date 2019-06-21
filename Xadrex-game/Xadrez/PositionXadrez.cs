@@ -1,6 +1,4 @@
-﻿using System;
-using tabuleiro;
-using System.Text;
+﻿using tabuleiro;
 
 namespace Xadrez
 {
@@ -21,7 +19,7 @@ namespace Xadrez
         }
         public override string ToString()
         {
-            return ""+Column+Line;
+            return "" + Column + Line;
         }
     }
 }

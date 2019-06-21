@@ -1,6 +1,4 @@
-﻿using System;
-using tabuleiro;
-using System.Text;
+﻿using tabuleiro;
 
 namespace tabuleiro
 {
@@ -21,6 +19,10 @@ namespace tabuleiro
         public void IncrementQntMoves()
         {
             QntMoves++;
+        }
+        public void DecrementQntMoves()
+        {
+            QntMoves--;
         }
         public bool PossiblesMovesExist()
         {

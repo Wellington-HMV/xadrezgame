@@ -15,13 +15,13 @@ namespace tabuleiro
             Colums = colums;
             Pieces = new Piece[Lines, Colums];
         }
+        public Piece piece(int lines, int colums)
+        {
+            return Pieces[lines, colums];
+        }
         public Piece piece(Position pos)
         {
             return Pieces[pos.Column, pos.Line];
-        }
-        public Piece Piece(int lines, int colums)
-        {
-            return Pieces[lines, colums];
         }
         public bool PieceExist(Position pos)
         {
