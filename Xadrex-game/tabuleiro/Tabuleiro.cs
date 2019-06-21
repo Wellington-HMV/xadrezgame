@@ -30,7 +30,7 @@ namespace tabuleiro
         }
         public void InsertPiece(Piece p, Position pos)
         {
-            if (PieceExist(pos))
+            if (PieceExist(pos) == null)///alteração inseri o igual a null porque não estava imprimindo o tabuleiro
             {
                 throw new TabuleiroException("There is already a piece in this position");
             }

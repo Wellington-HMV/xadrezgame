@@ -45,7 +45,7 @@ namespace Xadrex_game
                 Console.Write(8 - i + " ");
                 for (int j = 0; j < tab.Colums; j++)
                 {
-                    PrintPiece(tab.Piece(i, j));
+                    PrintPiece(tab.piece(i, j));
                 }
                 Console.WriteLine();
             }
@@ -68,7 +68,7 @@ namespace Xadrex_game
                     {
                         Console.BackgroundColor = backgroundOriginal;
                     }
-                    PrintPiece(tab.Piece(i, j));
+                    PrintPiece(tab.piece(i, j));
                     Console.BackgroundColor = backgroundOriginal;
                 }
                 Console.WriteLine();

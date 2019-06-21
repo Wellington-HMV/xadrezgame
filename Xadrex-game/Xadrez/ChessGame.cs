@@ -34,6 +34,24 @@ namespace Xadrez
             {
                 captured.Add(capturedPiece);
             }
+            //#Jogada especial roque pequeno
+            if (p is King && destin.Column == origin.Column + 2)
+            {
+                Position originT = new Position(origin.Line, origin.Column + 3);
+                Position destinT = new Position(origin.Line, origin.Column + 1);
+                Piece T = tab.RemovePiece(originT);
+                T.IncrementQntMoves();
+                tab.InsertPiece(T, destinT);
+            }
+            //#Jogada especial roque grande
+            if (p is King && destin.Column == origin.Column - 2)
+            {
+                Position originT = new Position(origin.Line, origin.Column -4);
+                Position destinT = new Position(origin.Line, origin.Column -1);
+                Piece T = tab.RemovePiece(originT);
+                T.IncrementQntMoves();
+                tab.InsertPiece(T, destinT);
+            }
             return capturedPiece;
         }
         public void UndoMove(Position origin, Position destin, Piece pieceCaptured)  //desfaz o movimento
@@ -46,6 +64,24 @@ namespace Xadrez
                 captured.Remove(pieceCaptured);
             }
             tab.InsertPiece(p, origin);
+            //#Jogada especial roque pequeno
+            if (p is King && destin.Column == origin.Column + 2)
+            {
+                Position originT = new Position(origin.Line, origin.Column + 3);
+                Position destinT = new Position(origin.Line, origin.Column + 1);
+                Piece T = tab.RemovePiece(destinT);
+                T.DecrementQntMoves();
+                tab.InsertPiece(T, originT);
+            }
+            //#Jogada especial roque grande
+            if (p is King && destin.Column == origin.Column - 2)
+            {
+                Position originT = new Position(origin.Line, origin.Column - 4);
+                Position destinT = new Position(origin.Line, origin.Column - 1);
+                Piece T = tab.RemovePiece(destinT);
+                T.DecrementQntMoves();
+                tab.InsertPiece(T, originT);
+            }
         }
         public void RealizePlayed(Position origin, Position destin)
         {
@@ -211,7 +247,7 @@ namespace Xadrez
             InsertNewPiece('b', 1, new Horse(tab, Color.White));
             InsertNewPiece('c', 1, new Bishop(tab, Color.White));
             InsertNewPiece('d', 1, new Lady(tab, Color.White));
-            InsertNewPiece('e', 1, new King(tab, Color.White));
+            InsertNewPiece('e', 1, new King(tab, Color.White,this));
             InsertNewPiece('f', 1, new Bishop(tab, Color.White));
             InsertNewPiece('g', 1, new Horse(tab, Color.White));
             InsertNewPiece('h', 1, new Tower(tab, Color.White));
@@ -228,7 +264,7 @@ namespace Xadrez
             InsertNewPiece('b', 8, new Horse(tab, Color.Black));
             InsertNewPiece('c', 8, new Bishop(tab, Color.Black));
             InsertNewPiece('d', 8, new Lady(tab, Color.Black));
-            InsertNewPiece('e', 8, new King(tab, Color.Black));
+            InsertNewPiece('e', 8, new King(tab, Color.Black,this));
             InsertNewPiece('f', 8, new Bishop(tab, Color.Black));
             InsertNewPiece('g', 8, new Horse(tab, Color.Black));
             InsertNewPiece('h', 8, new Tower(tab, Color.Black));
