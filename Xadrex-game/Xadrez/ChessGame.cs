@@ -129,6 +129,17 @@ namespace Xadrez
                 UndoMove(origin, destin, capturedPiece);
                 throw new TabuleiroException("You don't stay XEQUE!");
             }
+            Piece p = tab.piece(destin);
+            //#jogada especial promocao
+            if(p.Color == Color.White && destin.Line == 0 || p.Color == Color.Black && destin.Line == 7)
+            {
+                p = tab.RemovePiece(destin);
+                pieces.Remove(p);
+                Piece lady = new Lady(tab, p.Color);
+                tab.InsertPiece(lady, destin);
+                pieces.Add(lady);
+            }
+            //verifica se esta em xeque
             if (XequeStay(Adversary(PlayerActual)))
             {
                 Xeque = true;
@@ -146,7 +157,6 @@ namespace Xadrez
                 Turn++;
                 ChangePlayer();
             }
-            Piece p = tab.piece(destin);
             //#Jogada especial en passant
             if (p is Pawn && destin.Line == origin.Line - 2 || destin.Line == origin.Line + 2)
             {

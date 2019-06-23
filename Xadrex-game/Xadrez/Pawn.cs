@@ -55,12 +55,12 @@ namespace Xadrez
                 {
                     Position lefth = new Position(Position.Line, Position.Column - 1);
                     if (Tab.ValidPosition(lefth) && ExistEnemy(lefth) && Tab.piece(lefth) == Play.VulnerableEnPassant){
-                        mat[lefth.Line, lefth.Column] = true;
+                        mat[lefth.Line-1, lefth.Column] = true;
                     }
                     Position rigth = new Position(Position.Line, Position.Column + 1);
                     if (Tab.ValidPosition(rigth) && ExistEnemy(rigth) && Tab.piece(rigth) == Play.VulnerableEnPassant)
                     {
-                        mat[rigth.Line, rigth.Column] = true;
+                        mat[rigth.Line-1, rigth.Column] = true;
                     }
                 }
             }
@@ -93,12 +93,12 @@ namespace Xadrez
                     Position lefth = new Position(Position.Line, Position.Column - 1);
                     if (Tab.ValidPosition(lefth) && ExistEnemy(lefth) && Tab.piece(lefth) == Play.VulnerableEnPassant)
                     {
-                        mat[lefth.Line, lefth.Column] = true;
+                        mat[lefth.Line +1, lefth.Column] = true;
                     }
                     Position rigth = new Position(Position.Line, Position.Column + 1);
                     if (Tab.ValidPosition(rigth) && ExistEnemy(rigth) && Tab.piece(rigth) == Play.VulnerableEnPassant)
                     {
-                        mat[rigth.Line, rigth.Column] = true;
+                        mat[rigth.Line+1, rigth.Column] = true;
                     }
                 }
             }
