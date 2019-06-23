@@ -21,7 +21,7 @@ namespace tabuleiro
         }
         public Piece piece(Position pos)
         {
-            return Pieces[pos.Column, pos.Line];
+            return Pieces[pos.Line, pos.Column];
         }
         public bool PieceExist(Position pos)
         {
@@ -30,7 +30,7 @@ namespace tabuleiro
         }
         public void InsertPiece(Piece p, Position pos)
         {
-            if (PieceExist(pos) == null)///alteração inseri o igual a null porque não estava imprimindo o tabuleiro
+            if (PieceExist(pos))
             {
                 throw new TabuleiroException("There is already a piece in this position");
             }

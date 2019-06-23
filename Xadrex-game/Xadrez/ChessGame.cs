@@ -13,6 +13,7 @@ namespace Xadrez
         private HashSet<Piece> pieces;
         private HashSet<Piece> captured;
         public bool Xeque { get; private set; }
+        public Piece VulnerableEnPassant { get; private set; }
         public ChessGame()
         {
             tab = new Tabuleiro(8, 8);
@@ -20,6 +21,7 @@ namespace Xadrez
             PlayerActual = Color.White;
             Finish = false;
             Xeque = false;
+            VulnerableEnPassant = null;
             pieces = new HashSet<Piece>();
             captured = new HashSet<Piece>();
             InsertPieces();
@@ -46,11 +48,29 @@ namespace Xadrez
             //#Jogada especial roque grande
             if (p is King && destin.Column == origin.Column - 2)
             {
-                Position originT = new Position(origin.Line, origin.Column -4);
-                Position destinT = new Position(origin.Line, origin.Column -1);
+                Position originT = new Position(origin.Line, origin.Column - 4);
+                Position destinT = new Position(origin.Line, origin.Column - 1);
                 Piece T = tab.RemovePiece(originT);
                 T.IncrementQntMoves();
                 tab.InsertPiece(T, destinT);
+            }
+            //#jogada especial enpassant
+            if (p is Pawn)
+            {
+                if (origin.Column != destin.Column && capturedPiece == null)
+                {
+                    Position posP;
+                    if (p.Color == Color.White)
+                    {
+                        posP = new Position(destin.Line + 1, destin.Column);
+                    }
+                    else
+                    {
+                        posP = new Position(destin.Line - 1, destin.Column);
+                    }
+                    capturedPiece = tab.RemovePiece(posP);
+                    captured.Add(capturedPiece);
+                }
             }
             return capturedPiece;
         }
@@ -82,6 +102,24 @@ namespace Xadrez
                 T.DecrementQntMoves();
                 tab.InsertPiece(T, originT);
             }
+            //#jogada especial enpassant
+            if(p is Pawn)
+            {
+                if(origin.Column!= destin.Column && pieceCaptured == VulnerableEnPassant)
+                {
+                    Piece pawn = tab.RemovePiece(destin);
+                    Position posP;
+                    if (p.Color == Color.White)
+                    {
+                        posP = new Position(3, destin.Column);
+                    }
+                    else
+                    {
+                        posP = new Position(4, destin.Column);
+                    }
+                    tab.InsertPiece(pawn, posP);
+                }
+            }
         }
         public void RealizePlayed(Position origin, Position destin)
         {
@@ -107,6 +145,16 @@ namespace Xadrez
             {
                 Turn++;
                 ChangePlayer();
+            }
+            Piece p = tab.piece(destin);
+            //#Jogada especial en passant
+            if (p is Pawn && destin.Line == origin.Line - 2 || destin.Line == origin.Line + 2)
+            {
+                VulnerableEnPassant = p;
+            }
+            else
+            {
+                VulnerableEnPassant = null;
             }
         }
         public void ValidOriginPosition(Position pos)
@@ -223,9 +271,9 @@ namespace Xadrez
                         {
                             Position origin = x.Position;
                             Position destin = new Position(i, j);
-                            Piece capturedPiece = ExecuteMov(origin,destin);
+                            Piece capturedPiece = ExecuteMov(origin, destin);
                             bool testXeque = XequeStay(color);
-                            UndoMove(origin,destin,capturedPiece);
+                            UndoMove(origin, destin, capturedPiece);
                             if (!testXeque)
                             {
                                 return false;
@@ -236,9 +284,9 @@ namespace Xadrez
             }
             return true;
         }
-        public void InsertNewPiece(char column, int line, Piece piece)
+        public void InsertNewPiece(char line, int column, Piece piece)
         {
-            tab.InsertPiece(piece, new PositionXadrez(column, line).ToPosition());
+            tab.InsertPiece(piece, new PositionXadrez(line, column).ToPosition());
             pieces.Add(piece);
         }
         private void InsertPieces()
@@ -247,35 +295,35 @@ namespace Xadrez
             InsertNewPiece('b', 1, new Horse(tab, Color.White));
             InsertNewPiece('c', 1, new Bishop(tab, Color.White));
             InsertNewPiece('d', 1, new Lady(tab, Color.White));
-            InsertNewPiece('e', 1, new King(tab, Color.White,this));
+            InsertNewPiece('e', 1, new King(tab, Color.White, this));
             InsertNewPiece('f', 1, new Bishop(tab, Color.White));
             InsertNewPiece('g', 1, new Horse(tab, Color.White));
             InsertNewPiece('h', 1, new Tower(tab, Color.White));
-            InsertNewPiece('a', 2, new Pawn(tab, Color.White));
-            InsertNewPiece('b', 2, new Pawn(tab, Color.White));
-            InsertNewPiece('c', 2, new Pawn(tab, Color.White));
-            InsertNewPiece('d', 2, new Pawn(tab, Color.White));
-            InsertNewPiece('e', 2, new Pawn(tab, Color.White));
-            InsertNewPiece('f', 2, new Pawn(tab, Color.White));
-            InsertNewPiece('g', 2, new Pawn(tab, Color.White));
-            InsertNewPiece('h', 2, new Pawn(tab, Color.White));
+            InsertNewPiece('a', 2, new Pawn(tab, Color.White, this));
+            InsertNewPiece('b', 2, new Pawn(tab, Color.White, this));
+            InsertNewPiece('c', 2, new Pawn(tab, Color.White, this));
+            InsertNewPiece('d', 2, new Pawn(tab, Color.White, this));
+            InsertNewPiece('e', 2, new Pawn(tab, Color.White, this));
+            InsertNewPiece('f', 2, new Pawn(tab, Color.White, this));
+            InsertNewPiece('g', 2, new Pawn(tab, Color.White, this));
+            InsertNewPiece('h', 2, new Pawn(tab, Color.White, this));
 
             InsertNewPiece('a', 8, new Tower(tab, Color.Black));
             InsertNewPiece('b', 8, new Horse(tab, Color.Black));
             InsertNewPiece('c', 8, new Bishop(tab, Color.Black));
             InsertNewPiece('d', 8, new Lady(tab, Color.Black));
-            InsertNewPiece('e', 8, new King(tab, Color.Black,this));
+            InsertNewPiece('e', 8, new King(tab, Color.Black, this));
             InsertNewPiece('f', 8, new Bishop(tab, Color.Black));
             InsertNewPiece('g', 8, new Horse(tab, Color.Black));
             InsertNewPiece('h', 8, new Tower(tab, Color.Black));
-            InsertNewPiece('a', 7, new Pawn(tab, Color.Black));
-            InsertNewPiece('b', 7, new Pawn(tab, Color.Black));
-            InsertNewPiece('c', 7, new Pawn(tab, Color.Black));
-            InsertNewPiece('d', 7, new Pawn(tab, Color.Black));
-            InsertNewPiece('e', 7, new Pawn(tab, Color.Black));
-            InsertNewPiece('f', 7, new Pawn(tab, Color.Black));
-            InsertNewPiece('g', 7, new Pawn(tab, Color.Black));
-            InsertNewPiece('h', 7, new Pawn(tab, Color.Black));
+            InsertNewPiece('a', 7, new Pawn(tab, Color.Black, this));
+            InsertNewPiece('b', 7, new Pawn(tab, Color.Black, this));
+            InsertNewPiece('c', 7, new Pawn(tab, Color.Black, this));
+            InsertNewPiece('d', 7, new Pawn(tab, Color.Black, this));
+            InsertNewPiece('e', 7, new Pawn(tab, Color.Black, this));
+            InsertNewPiece('f', 7, new Pawn(tab, Color.Black, this));
+            InsertNewPiece('g', 7, new Pawn(tab, Color.Black, this));
+            InsertNewPiece('h', 7, new Pawn(tab, Color.Black, this));
         }
     }
 }

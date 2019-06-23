@@ -55,6 +55,7 @@ namespace Xadrex_game
         {
             ConsoleColor backgroundOriginal = Console.BackgroundColor;
             ConsoleColor backgroundAltered = ConsoleColor.DarkGray;
+
             for (int i = 0; i < tab.Lines; i++)
             {
                 Console.Write(8 - i + " ");
